@@ -73,59 +73,54 @@ The test scripts are developed using Selenium with Python and Pytest, following 
 
 **Test Suite :**
 
-Test Case 1: Validates login functionality using multiple sets of credentials using external CSV file
+Test Case 1: Validates login functionality with different predefined usernames using external CSV file
 
-	* Positive case: Properly enters orangehrm login page and enters valid data and clicks logout
-	* Negative case: Enters orangehrm login page and enters invalid data and displays error message
+	* Positive case: Properly enters Saucedemo login page and navigates to inventory page
+	* Negative case: Enters Saucedemo login page and throws assertion error for "locked_out_user"
  
-Test Case 2: Verify that the home URL is accessible
+Test Case 2: Validates login functionality with different invalid credentials using external CSV file
 
-	* Positive case: Validates proper navigation to (https://opensource-demo.orangehrmlive.com) and asserts current URL
-	* Negative case: Invalid URL navigation and displays error message
+	* Negative case: Login with invalid credentials and displays the error message
 
-Test Case 3: Validate presence of login fields
+Test Case 3: Validates logout functionality
 
-	* Locates Username and Password else throws NoSuchElementException
-	* Assert Username and Password is visible and interactable
+	* Positive case: Checks whether the logout button is visible after login and properly logs the user out and asserts the login URL
+	* Negative case: Checks whether the logout button is visible and doesn't logs the user out and asserts the login URL
 
-Test Case 4: Checks visibility and clickability of main menu items after login in dashboard page[Admin, PIM, Leave, Time, Recruitment, My Info, Performance, Dashboard]
+Test Case 4: Verify if the cart icon is visible on the product listing page post login
 
-	* Positive case: Validate menu items after login stored as dictionary are visible and interactable 
-	* Negative case: Invalid access to menu items throws error message
+	* Navigates to inventory page and checks cart icon is visible
+	* Also checks cart icon is accessible at all times after login.
 
-Test Case 5:  Creating a new user and validate login using new user credentials
+Test Case 5: Random selection of inventory products and data extraction
 
-	* Positive case: Login as Admin and navigate to Admin menu and creates new user with valid details[User_role,Status,Employee_name, username, password, confirmpassword]
-	* After new user creation,clicks logout and re-enters with new user credentials.
-    * Negative case:Creates new user with invalid details like Employee name doesn't start with numbers.Displays error message.Also existing user cannot be created.
+	* Navigates to inventory page and randomly selects 4 inventory items out of total 6 inventory items using Keyword Driven.
+	* Displays the selected inventory items name and price.
  
-Test Case 6: Validate presence of the newly created user in the admin user list
+Test Case 6: Add selected products to cart and validate the cart items 
 
-	* Positive case: Navigates to Admin menu and validates new user is available in user list
-	* Negative case: Navigates to Admin menu and validates not created user is available in user list
+	* Positive case: Selected inventory items are added to cart and validate the cart count==4 and displays the cart items
+	* Negative case: Adds to cart only 2 inventory items and validate the cart count==4 and throws Assertion Error.
 
-Test Case 7: Checks "Forgot Password" link functionality
+Test Case 7: Validate product details inside the cart
 
-	* Enters Login page and clicks "Forgot Password" link. 
-	* Navigates to Forgot Password and enters username and reset link is sent to mail and displays message
+	* Navigates to cart page and validates the products in the cart matches with the added inventory items
+	* If there is mismatch in cart items and added inventory items it shows an error message
+ 
+Test Case 8: Complete checkout and validate order
 
-Test Case 8: Validate the presence of menu items under “My Info”[Personal Details,Contact Details,Emergency Contacts,Job,Salary,Qualification,Memberships..]
+	* Positive case: Naviagates to checkout page and fills the checkout information and takes screenshot of order summary and displays confirmation message
+	* Negative case: Navigates to checkout page and unfills few data and clicks continue. Displays error message to fill the data.
 
-	* Positive case: Validate menu items under “My Info” stored as dictionary are visible and interactable 
-	* Negative case: Invalid access to menu items throws error message
+Test Case 9: Validate sorting functionality on the products page
 
-Test Case 9: Assign leave to an employee and verify assignment on Leave List
+	* Naviagates to Inventory page and clicks sorting option like 'Name (Z to A)(A to Z),Price (low to high)(high to low)'
+ 	* Verifies products get sorted based on the options and displays the items name and price depending on the selected option
 
-	* Login as Admin and navigates to Leave menu and add entitlements(Employee_name,Leave_Type, Entitled_Days)
-    * Assign leave to an employee by providing (Employee_name,Leave_Type,From_Date,To_Date) details
-    * After successful leave assignment check leave is scheduled on the leave list
+Test Case 10: Validate "Reset App State" functionality
 
-Test Case 10: Initiate a claim request and check the assigned claim on Claim list
-
-	* Login as an Employee with new user credentials. Navigate to Claim menu.
-	* Submit the claim (Event_Type,Currency_Type) and add expenses(Event_Type, Claim_Date, Claim_Amount)
-	* After successful claim submission check claim of an employee is submitted on the claim list
-
+	* Adds products to cart and navigates to cart page and returns back to inventory page and cart icon shows items count in cart badge
+	* Under burger menu clicks Reset App State and cart badge disappears. StaleElementReference exception raises after cart badge is searched.
 
 
 **Instructions:**
@@ -169,8 +164,7 @@ To execute single file and generate html report,
 	>pytest -v -s Tests/test_01_validate_login.py   --html=case01_report.html   --self-contained-html
 
 
-**Screen Recording**:https://drive.google.com/file/d/1OzZ3XA--tmqTX2rZV14XwhWyQ-VXCugB/view?usp=sharing
-
+**Screen Recording**:
 
 
 
