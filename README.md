@@ -145,7 +145,7 @@ Test Case 10: Validate "Reset App State" functionality
 
 	>pytest pytest -v -s Tests/test_01_validate_login.py(for any specific file)
 
-	>pytest pytest -v -s Tests/test_01_validate_login.py::test_validate_login(for specific method in a test file)
+	>pytest pytest -v -s Tests/test_01_validate_login.py::test_login(for specific method in a test file)
 
 
 
