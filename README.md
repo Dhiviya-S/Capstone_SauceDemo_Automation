@@ -5,6 +5,7 @@ This project automates the testing of the web application (https://www.saucedemo
 The test scripts are developed using Selenium with Python and Pytest, following the Hybrid framework [Page Object Model (POM),Data Driven,Keyword Driven framework] and adhering to Object-Oriented Programming (OOP) principles. The test data is externalized (CSV) using Data Driven framework,Keyword Driven Testing framework and common configurations are handled in config.py.The valid and invalid login data are externalized (CSV) using Data Driven framework.Keywords are stored as CSV file which access the methods in keywords.py file using Keyword Driven Testing framework.The suite includes 10 detailed test cases focused on verifying page behavior, accessibility of essential elements, navigation flows, and login/logout processes.
 
 
+
 **Project Architecture :**
 
 **Capstone/**
@@ -56,6 +57,7 @@ The test scripts are developed using Selenium with Python and Pytest, following 
 ├── README.md
 
 
+
 **Tools & Technologies:**
 *     Selenium WebDriver
 *     Python 
@@ -68,6 +70,7 @@ The test scripts are developed using Selenium with Python and Pytest, following 
 *     Explicit Waits
 *     Exception Handling
 *     Pytest HTML Reports
+
 
 
 
@@ -121,6 +124,7 @@ Test Case 10: Validate "Reset App State" functionality
 
 	* Adds products to cart and navigates to cart page and returns back to inventory page and cart icon shows items count in cart badge
 	* Under burger menu clicks Reset App State and cart badge disappears. StaleElementReference exception raises after cart badge is searched.
+
 
 
 **Instructions:**
